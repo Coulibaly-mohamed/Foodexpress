@@ -26,3 +26,10 @@ Une API RESTful pour gérer des restaurants et leurs menus. Authentification via
 git clone https://github.com/votre-utilisateur/foodexpress-api.git
 cd foodexpress-api
 npm install
+
+👨‍💻 Auteur
+Coulibaly Mohamed
+Étudiant à SUPINFO Paris
+Passionné par le développement web et les APIs modernes.
+
+
