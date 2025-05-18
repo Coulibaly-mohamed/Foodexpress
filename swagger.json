@@ -1,0 +1,199 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "FoodExpress API",
+    "version": "1.0.0",
+    "description": "API REST pour la gestion des restaurants et menus de FoodExpress."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Serveur local"
+    }
+  ],
+  "paths": {
+    "/api/restaurants": {
+      "get": {
+        "summary": "Récupère tous les restaurants",
+        "responses": {
+          "200": {
+            "description": "Liste des restaurants",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurant"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crée un nouveau restaurant",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Restaurant"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Restaurant créé"
+          }
+        }
+      }
+    },
+    "/api/restaurants/{id}": {
+      "get": {
+        "summary": "Récupère un restaurant par ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Détails du restaurant"
+          },
+          "404": {
+            "description": "Restaurant non trouvé"
+          }
+        }
+      },
+      "put": {
+        "summary": "Met à jour un restaurant",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Restaurant"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Restaurant mis à jour"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Supprime un restaurant",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Restaurant supprimé"
+          }
+        }
+      }
+    },
+    "/api/menus": {
+      "get": {
+        "summary": "Récupère tous les menus",
+        "responses": {
+          "200": {
+            "description": "Liste des menus",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Menu"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crée un menu",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Menu"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Menu créé"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Restaurant": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "openingHours": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "address", "phone", "openingHours"]
+      },
+      "Menu": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "restaurant": {
+            "type": "string",
+            "description": "ID du restaurant"
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "price", "restaurant","category"]
+      }
+    }
+  }
+}
